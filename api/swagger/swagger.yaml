@@ -1,0 +1,92 @@
+swagger: "2.0"
+info:
+  version: "0.0.1"
+  title: Screen Sizes
+# during dev, should point to your local machine
+host: localhost:10010
+# basePath prefixes all resource paths 
+basePath: /
+# 
+schemes:
+  # tip: remove http to make production-grade
+  - http
+  - https
+# format of bodies a client can send (Content-Type)
+consumes:
+  - application/json
+# format of the responses to the client (Accepts)
+produces:
+  - application/json
+paths:
+  /screen_sizes:
+    # binds a127 app logic to a route
+    x-swagger-router-controller: screen_sizes
+    get:
+      description: Returns screen sizes for all known device types
+      # used as the method name of the controller
+      operationId: get_screen_sizes
+      responses:
+        "200":
+          description: Success
+          schema:
+            # a pointer to a definition
+            properties:
+              results:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    deviceName:
+                      type: string
+                    canonicalName:
+                      type: string
+                    density:
+                      type: string
+                    densityName:
+                      type: string
+                    screenSize:
+                      type: string
+                    portraitdevicePixelHeight:
+                      type: integer
+                    portraitdevicePixelWidth:
+                      type: integer
+                    portraitcontentViewPixelHeight:
+                      type: integer
+                    portraitcontentViewPixelWidth:
+                      type: integer
+                    portraitnavBarHeight:
+                      type: integer
+                    portraitnavBarWidth:
+                      type: integer
+                    portraitstatusBarHeight:
+                      type: integer
+                    portraittitleBarHeight:
+                      type: integer
+                    landscapedevicePixelHeight:
+                      type: integer
+                    landscapedevicePixelWidth:
+                      type: integer
+                    landscapecontentViewPixelHeight:
+                      type: integer
+                    landscapecontentViewPixelWidth:
+                      type: integer
+                    landscapenavBarHeight:
+                      type: integer
+                    landscapenavBarWidth:
+                      type: integer
+                    landscapestatusBarHeight:
+                      type: integer
+                    landscapetitleBarHeight:
+                      type: integer
+        # responses may fall through to errors
+        default:
+          description: Error
+          schema:
+            required:
+              - message
+            properties:
+              message:
+                type: string
+  /swagger:
+    x-swagger-pipe: swagger_raw
+
