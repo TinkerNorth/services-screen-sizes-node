@@ -1,0 +1,7 @@
+version: "2"
+services:
+  app:
+    container_name: service-screen-sizes-node
+    build: .
+    ports:
+      - "8001:8001"
